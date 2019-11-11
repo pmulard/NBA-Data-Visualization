@@ -173,3 +173,15 @@ def createFolder(statsType):
 	newpath = r"{}\{}".format(directory, statsType) 
 	if not os.path.exists(newpath):
 	    os.makedirs(newpath)
+
+	
+#Merges two data frames together and removes duplicate columns
+def mergeData(data1, data2):
+
+	#Passes the arguments to an array that is concatonated
+	frames = [data1, data2]
+	merge = pd.concat(frames, axis = 1)
+
+	#Subtracts duplicate columns
+	merge = merge.loc[:, ~merge.columns.duplicated()]
+	return merge
